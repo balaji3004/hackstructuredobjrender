@@ -1,147 +1,25 @@
-<!DOCTYPE html>
-
-<!--
-Licensed to the Symphony Software Foundation (SSF) under one
-or more contributor license agreements.  See the NOTICE file
-distributed with this work for additional information
-regarding copyright ownership.  The SSF licenses this file
-to you under the Apache License, Version 2.0 (the
-"License"); you may not use this file except in compliance
-with the License.  You may obtain a copy of the License at
-
-  http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing,
-software distributed under the License is distributed on an
-"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-KIND, either express or implied.  See the License for the
-specific language governing permissions and limitations
-under the License.
--->
-
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Hello World App - View</title>
+	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+	<script type="text/javascript">
+		function initialise() {
+			var email = document.location.search.substring(document.location.search.indexOf("=") + 1);
 
-    <!-- Include Symphony's stylesheet -->
-    <link rel="stylesheet" type="text/css" href="https://symphony.com/resources/api/v1.1/symphony-style.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-    <style>
-    	.hidden {
-    		display: none;
-    	}
+			$.get("http://localhost:8080/statistics?username=" + email, function(data, status) {
 
-    	.blurb {
-    		line-height: 1.5;
-    	}
+				var data1 = eval(data);
 
-        .subtitle {
-    		font-style: italic;
-    		font-weight: bold;
-    	}
-
-    	.module-text-input {
-    		width: 200px !important;
-    	}
-        table {
-            border-collapse: collapse;
-        }
-        table, th, td {
-            border: 1px solid white;
-        }
-        thead {
-            background-color:#0C2F5F; 
-            color: white; 
-        }
-        tbody{
-            font-size: 17px !important;
-        }
-
-    </style>
+				var layout = {
+				  margin: {l: 0, r: 0, b: 0, t: 0},
+				  width: 500,
+				  height: 300
+				};
+					Plotly.newPlot('sChart', data1, layout);
+			});
+		}
+	</script>
 </head>
-
-<!-- 
-See app.js for how the user's theme (light or dark) and font size (large, normal, small, xsmall) are detected and applied.
--->
-<body>
-        <div class="demo-container"></div>
-    <h3>Scannell Family Trust (Acct. x5694)</h3>
-
-    <table class="table">
-        <thead>
-            <tr>
-            <th>Symbol</th>
-            <th>Mandate</th> 
-            <th>Current Position</th>
-            <th>Status</th>
-            <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-            <td>$TSLA (Tesla, Inc.)</td>
-            <td>Min 5%</td>
-            <td>3%</td>
-            <td><span class="badge badge-danger red-badge">RED</span></td>
-            <td class="row-btn"><button id="link" class="button primary">INFO</button></td>
-            </tr>
-            <tr>
-                <td>Cash</td>
-                <td>Min $250k cash</td>
-                <td>$279,050</td>
-                <td><span class="badge badge-success">GREEN</span></td>
-                <td>N/A</td>
-            </tr>
-            <tr>
-                <td>$T (AT&ampT; Inc.)</td>
-                <td>Do not sell</td>
-                <td>$142,7421</td>
-                <td><span class="badge badge-success">GREEN</span></td>
-                <td>N/A</td>
-            </tr>
-            <tr>
-                <td>$NKE (Nike Inc.)</td>
-                <td>Do not sell</td>
-                <td>$38,101</td>
-                <td><span class="badge badge-success">GREEN</span></td>
-                <td>N/A</td>
-            </tr>
-            <tr>
-                <td>$AAPL (Apple Inc.)</td>
-                <td>Do not sell</td>
-                <td>$202,739</td>
-                <td><span class="badge badge-success">GREEN</span></td>
-                <td>N/A</td>
-            </tr>
-            <tr>
-                <td>$VZ (Verizon Communications Inc.)</td>
-                <td>Do not buy</td>
-                <td>$0</td>
-                <td><span class="badge badge-success">GREEN</span></td>
-                <td>N/A</td>
-            </tr>
-            <tr>
-                <td>$TWTR (Twitter Inc.)</td>
-                <td>Do not buy</td>
-                <td>$0</td>
-                <td><span class="badge badge-success">GREEN</span></td>
-                <td>N/A</td>
-            </tr>
-        </tbody>
-      </table>
-
-    <!-- Add the appropriate classes to buttons -->
-    
-
-    
-
-    <!-- Include Symphony's Client Extension API javascript -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://www.symphony.com/resources/api/v1.0/symphony-api.js" charset="utf-8"></script>
-    <!-- Include the app view javascript. This file is generated when running the npm webpack commands.  -->
-    <script type="text/javascript" src="app.bundle.js" charset="utf-8"></script>
+<body onload="initialise()">
+	<div id="sChart"></div>
 </body>
-</html>

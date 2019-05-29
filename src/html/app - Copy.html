@@ -1,0 +1,31 @@
+<html>
+<head>
+	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+	<script type="text/javascript">
+		function initialise() {
+			document.getElementById("email").innerText=document.location.search.substring(document.location.search.indexOf("=") + 1);
+			var data = [{
+				  type: "sunburst",
+				  labels: ["Eve", "Cain", "Seth", "Enos", "Noam", "Abel", "Awan", "Enoch", "Azura"],
+				  parents: ["", "Eve", "Eve", "Seth", "Seth", "Eve", "Eve", "Awan", "Eve" ],
+				  values:  [10, 14, 12, 10, 2, 6, 6, 4, 4],
+				  outsidetextfont: {size: 20, color: "#377eb8"},
+				  leaf: {opacity: 0.4},
+				  marker: {line: {width: 2}},
+				}];
+
+				var layout = {
+				  margin: {l: 0, r: 0, b: 0, t: 0},
+				  width: 500,
+				  height: 300
+				};
+
+
+				Plotly.newPlot('sChart', data, layout);
+		}
+	</script>
+</head>
+<body onload="initialise()">
+	<div id="email"></div>
+	<div id="sChart"></div>
+</body>
