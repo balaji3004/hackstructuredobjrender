@@ -10,10 +10,10 @@
   },
   "author": "Jared Rada",
   "devDependencies": {
-    "css-loader": "^0.23.1",
-    "html-webpack-plugin": "^2.16.0",
+    "css-loader": "^6.7.3",
+    "html-webpack-plugin": "^5.5.0",
     "style-loader": "^0.13.0",
-    "webpack": "^1.12.14",
+    "webpack": "^5.75.0",
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
